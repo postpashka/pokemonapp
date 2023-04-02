@@ -42,7 +42,7 @@ export const getPokemon = async (id:any) => {
         ...defaultOptions,
 		data: {
 			query: `{
-                pokemon_v2_pokemon(where: {id: {_eq: "1"}}) {
+                pokemon_v2_pokemon(where: {id: {_eq: "${id}"}}) {
                     name
                     pokemon_v2_pokemonmoves {
                       pokemon_v2_move {
@@ -56,6 +56,7 @@ export const getPokemon = async (id:any) => {
                       pokemon_v2_stat {
                         name
                       }
+                      base_stat
                     }
                     pokemon_v2_pokemontypes {
                       pokemon_v2_type {
