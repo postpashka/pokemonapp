@@ -3,15 +3,18 @@ import React, {useEffect}    from 'react';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import {fetchPokemon} from "../store/action-creators/pokemon";
 import { useActions } from "../hooks/useActions";
+import { useParams } from 'react-router-dom';
 
 const PokemonInfo: React.FC = () => {
+
+    const { pokemon:pokemonId } = useParams();
 
     const {pokemon, error, loading} = useTypedSelector(state => state.pokemon )
 
     const {fetchPokemon} = useActions()
 
     useEffect(() => {
-        fetchPokemon()
+        fetchPokemon(pokemonId)
     }, [])
 
     if (loading) {
@@ -21,8 +24,12 @@ const PokemonInfo: React.FC = () => {
         return <h1>{error}</h1>
     }
 
+
     return (
         <div>
+
+            {JSON.stringify(pokemon)}
+
             {pokemon && pokemon.name}
             <ul>
             { pokemon.moves && pokemon.moves.map( (move:any) => 

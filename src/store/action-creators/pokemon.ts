@@ -2,14 +2,17 @@ import {PokemonAction, PokemonActionTypes} from "../../types/pokemon";
 import {Dispatch} from "redux";
 import axios from "axios";
 
-export const fetchPokemon = () => {
+import { getPokemon } from "../../api/pokemonAPI"
+
+export const fetchPokemon = (id:any) => {
     return async (dispatch: Dispatch<PokemonAction>) => {
         try {
             dispatch({type: PokemonActionTypes.FETCH_POKEMON})
-            const response = await axios.get('https://pokeapi.co/api/v2/pokemon/ditto')
-            setTimeout(() => {
-                dispatch({type: PokemonActionTypes.FETCH_POKEMON_SUCCESS, payload: response.data})
-            }, 500)
+
+            const response = await getPokemon(id)
+
+            dispatch({type: PokemonActionTypes.FETCH_POKEMON_SUCCESS, payload: response.data.data.pokemon_v2_pokemon[0]})
+
         } catch (e) {
             dispatch({
                 type: PokemonActionTypes.FETCH_POKEMON_ERROR,

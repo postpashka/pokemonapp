@@ -1,4 +1,5 @@
 import React, {useEffect}    from 'react';
+import { Link } from "react-router-dom";
 
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import {fetchPokemonList} from "../store/action-creators/pokemonList";
@@ -25,7 +26,9 @@ const PokemonList: React.FC = () => {
         <div>
             <ul>
             { pokemonList && pokemonList.map( (pokemon:any) => 
-                <li>{pokemon.name} {pokemon.url}</li>
+                <li key={pokemon.id}>
+                    <Link to={'pokemon/'+pokemon.id}>{pokemon.name}</Link>
+                </li>
             ) }
             </ul>
 
