@@ -16,6 +16,7 @@ export default function PaginationControlled({itemsData, ItemsComponent}:any) {
 
   React.useEffect(() => {
     setData(itemsData.slice(0, pageSize));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageSize]);
 
   const handleChange = (event:any, value:any) => {

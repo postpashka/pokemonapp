@@ -14,6 +14,7 @@ const PokemonListPage: React.FC = () => {
 
     useEffect(() => {
       !pokemonList.length && fetchPokemonList()
+          // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     if (loading) {
