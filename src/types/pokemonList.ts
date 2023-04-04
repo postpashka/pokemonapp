@@ -1,5 +1,7 @@
 export interface PokemonListState {
     pokemonList: any[];
+    searchName: string,
+    searchType: string,
     loading: boolean;
     error: null | string;
 }
@@ -13,7 +15,7 @@ interface FetchPokemonListAction {
 }
 interface FetchPokemonListSuccessAction {
     type: PokemonListActionTypes.FETCH_POKEMONLIST_SUCCESS;
-    payload: any[]
+    payload: any
 }
 interface FetchPokemonListErrorAction {
     type: PokemonListActionTypes.FETCH_POKEMONLIST_ERROR;

@@ -10,13 +10,13 @@ const defaultOptions = {
     },
 }
 
-export const getPokemons = async () => {
+export const getPokemons = async (name:string, type:string) => {
 
     const options = {
         ...defaultOptions,
 		data: {
 			query: `{
-                pokemon_v2_pokemon {
+                pokemon_v2_pokemon(where: {pokemon_v2_pokemontypes: {pokemon_v2_type: {name: {_ilike: "%${type}%"}}}, name: {_ilike: "%${name}%"}}) {
                     name
                     id
                     pokemon_v2_pokemontypes_aggregate {
@@ -35,8 +35,7 @@ export const getPokemons = async () => {
 
 };
 
-
-export const getPokemon = async (id:any) => {
+export const getPokemon = async (id:number) => {   
 
     const options = {
         ...defaultOptions,
@@ -71,5 +70,3 @@ export const getPokemon = async (id:any) => {
     return axios.request(options)
 
 };
-
-
